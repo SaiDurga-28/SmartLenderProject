@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Lender - Loan Approval Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🏦 Smart Lender</h1>
+    <h3>Loan Approval Prediction</h3>
+
+    {% if prediction_text %}
+        {% if prediction_text == "✅ Loan Approved" %}
+
+        <div class="result-card success" id="result">
+            <h2>{{ prediction_text }}</h2>
+            <p>
+                Congratulations! 🎉<br><br>
+                Based on the applicant details, the loan is likely to be approved.
+            </p>
+        </div>
+
+        {% else %}
+
+        <div class="result-card danger" id="result">
+            <h2>{{ prediction_text }}</h2>
+            <p>
+                Based on the applicant details, the loan is unlikely to be approved.
+                Please verify the information or improve the applicant profile.
+            </p>
+        </div>
+
+        {% endif %}
+    {% endif %}
+
+    <form action="/predict" method="POST">
+
+        <label>👤 Gender</label>
+        <select name="Gender" required>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select>
+
+        <label>💍 Married</label>
+        <select name="Married" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <label>👨‍👩‍👧 Dependents</label>
+        <input type="number" name="Dependents" placeholder="Enter number of dependents" required>
+
+        <label>🎓 Education</label>
+        <select name="Education" required>
+            <option value="0">Graduate</option>
+            <option value="1">Not Graduate</option>
+        </select>
+
+        <label>💼 Self Employed</label>
+        <select name="Self_Employed" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <label>💰 Applicant Income</label>
+        <input type="number" name="ApplicantIncome" placeholder="Enter applicant income" required>
+
+        <label>👥 Coapplicant Income</label>
+        <input type="number" name="CoapplicantIncome" placeholder="Enter coapplicant income" required>
+
+        <label>🏦 Loan Amount</label>
+        <input type="number" name="LoanAmount" placeholder="Enter loan amount" required>
+
+        <label>📅 Loan Amount Term</label>
+        <input type="number" name="Loan_Amount_Term" placeholder="Example: 360" required>
+
+        <label>⭐ Credit History</label>
+        <select name="Credit_History" required>
+            <option value="1">Good</option>
+            <option value="0">Bad</option>
+        </select>
+
+        <label>📍 Property Area</label>
+        <select name="Property_Area" required>
+            <option value="2">Urban</option>
+            <option value="1">Semi Urban</option>
+            <option value="0">Rural</option>
+        </select>
+
+        <div class="button-group">
+            <button type="submit">🔍 Predict Loan</button>
+            <button type="reset" class="reset-btn">🔄 Reset</button>
+        </div>
+
+    </form>
+
+</div>
+
+{% if prediction_text %}
+<script>
+window.onload = function () {
+    document.getElementById("result").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+</script>
+{% endif %}
+
+</body>
+</html>
