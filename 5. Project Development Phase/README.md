@@ -197,6 +197,15 @@ http://127.0.0.1:5000
 
 ---
 
+## Demo Video
+
+Watch a short demonstration of the **Smart Lender – AI Powered Loan Approval Prediction** project, showcasing the application's features and loan prediction workflow.
+
+**Demo Video:**  
+https://drive.google.com/file/d/1FeoKdbpCWkuW60Nmh-MVOuQHtHU0pr9k/view?usp=sharing
+
+---
+
 ## Future Scope
 
 - Improve prediction accuracy using advanced ensemble models.
